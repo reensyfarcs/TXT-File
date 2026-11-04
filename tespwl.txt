@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gabungan Latihan Web</title>
+    <style>
+        /* Styling untuk seluruh halaman */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        h2 {
+            color: #4CAF50;
+            margin-bottom: 10px;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        input[type="number"], input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        h3 {
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
+        /* Responsivitas - Mengubah ukuran font pada perangkat kecil */
+        @media screen and (max-width: 600px) {
+            h2 {
+                font-size: 20px;
+            }
+
+            input[type="number"], input[type="submit"] {
+                font-size: 14px;
+            }
+
+            h3 {
+                font-size: 16px;
+            }
+        }
+
+        /* Responsivitas - Pada perangkat besar, kita bisa memperbesar ukuran font */
+        @media screen and (min-width: 1200px) {
+            h2 {
+                font-size: 30px;
+            }
+
+            input[type="number"], input[type="submit"] {
+                font-size: 20px;
+            }
+
+            h3 {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Konversi Nilai</h2>
+    <form method="post">
+        Masukkan Nilai: <input type="number" name="nilai" required>
+        <input type="submit" name="submit_nilai" value="OK">
+    </form>
+
+    <?php
+    if (isset($_POST['submit_nilai'])) {
+        $nilai = $_POST['nilai'];
+        if ($nilai >= 85 && $nilai <= 100) {
+            $huruf = "A";
+        } elseif ($nilai >= 70) {
+            $huruf = "B";
+        } elseif ($nilai >= 60) {
+            $huruf = "C";
+        } elseif ($nilai >= 50) {
+            $huruf = "D";
+        } else {
+            $huruf = "E";
+        }
+        echo "<h3>Hasil: Nilai $nilai = $huruf</h3>";
+    }
+    ?>
+
+    <h2>Cek Bilangan</h2>
+    <form method="post">
+        Masukkan Bilangan: <input type="number" name="angka" required>
+        <input type="submit" name="submit_bilangan" value="OK">
+    </form>
+
+    <?php
+    if (isset($_POST['submit_bilangan'])) {
+        $angka = $_POST['angka'];
+        if ($angka > 0) {
+            echo "<h3>$angka adalah bilangan positif</h3>";
+        } elseif ($angka < 0) {
+            echo "<h3>$angka adalah bilangan negatif</h3>";
+        } else {
+            echo "<h3>$angka adalah nol</h3>";
+        }
+    }
+    ?>
+
+    <h2>Cek Genap / Ganjil</h2>
+    <form method="post">
+        Masukkan Bilangan: <input type="number" name="angka_genap_ganjil" required>
+        <input type="submit" name="submit_genap_ganjil" value="OK">
+    </form>
+
+    <?php
+    if (isset($_POST['submit_genap_ganjil'])) {
+        $angka_genap_ganjil = $_POST['angka_genap_ganjil'];
+        $hasil = ($angka_genap_ganjil % 2 == 0) ? "Genap" : "Ganjil";
+        echo "<h3>$angka_genap_ganjil adalah bilangan $hasil</h3>";
+    }
+    ?>
+
+    <h2>Switch Case Nilai</h2>
+    <form method="post">
+        Masukkan Nilai (0-100): <input type="number" name="nilai_switch" required>
+        <input type="submit" name="submit_switch" value="OK">
+    </form>
+
+    <?php
+    if (isset($_POST['submit_switch'])) {
+        $nilai_switch = $_POST['nilai_switch'];
+        switch (true) {
+            case ($nilai_switch >= 85 && $nilai_switch <= 100): $grade = "A"; break;
+            case ($nilai_switch >= 70): $grade = "B"; break;
+            case ($nilai_switch >= 60): $grade = "C"; break;
+            case ($nilai_switch >= 50): $grade = "D"; break;
+            default: $grade = "E";
+        }
+        echo "<h3>Hasil: Nilai $nilai_switch = $grade</h3>";
+    }
+    ?>
+    
+</body>
+</html>
